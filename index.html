@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Bio Website</title>
+    <style>
+        body {
+            background-color: #000;
+            color: #fff;
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        #typing-animation::after {
+            content: "|";
+            animation: blink-caret 0.75s infinite;
+        }
+
+        @keyframes typing {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+
+        @keyframes blink-caret {
+            from, to { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        @keyframes backspace {
+            from { width: 100%; }
+            to { width: 0; }
+        }
+
+        audio {
+            margin-top: 20px;
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 999;
+        }
+
+        .overlay-text {
+            text-align: center;
+            font-size: 24px;
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="overlay" id="overlay">
+        <div class="overlay-text">
+            <h2>click anywhere to enter</h2>
+        </div>
+    </div>
+
+    <h1 id="typing-animation" class="hidden"></h1>
+
+    <audio id="background-music" loop>
+        <source src="music.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
+    <script>
+        var typedText = "GhosT";
+        var isTyping = false;
+
+        function typeWriter(text, i) {
+            if (i < text.length) {
+                document.getElementById("typing-animation").textContent += text.charAt(i);
+                i++;
+                setTimeout(function() { typeWriter(text, i); }, 100);
+            } else {
+                setTimeout(function() { backspaceText(text); }, 3000);
+            }
+        }
+
+        function backspaceText(text) {
+            var typedElement = document.getElementById("typing-animation");
+            var typedText = typedElement.textContent;
+
+            if (typedText.length > 0) {
+                typedElement.textContent = typedText.substring(0, typedText.length - 1);
+                setTimeout(function() { backspaceText(text); }, 100);
+            } else {
+                setTimeout(function() { typeWriter(text, 0); }, 1000);
+            }
+        }
+
+        function playBackgroundMusic() {
+            var backgroundMusic = document.getElementById("background-music");
+            backgroundMusic.play();
+
+            // Remove the event listener to prevent the music from playing again
+            document.removeEventListener("click", playBackgroundMusic);
+        }
+
+        document.addEventListener("click", function() {
+            if (!isTyping) {
+                var overlay = document.getElementById("overlay");
+                overlay.style.display = "none";
+                playBackgroundMusic();
+                document.getElementById("typing-animation").classList.remove("hidden");
+                typeWriter(typedText, 0);
+                isTyping = true;
+            }
+        });
+    </script>
+</body>
+</html>
