@@ -38,10 +38,14 @@
 
         document.addEventListener("click", function() {
             if (!isTyping) {
+                //var overlay = document.getElementById("overlay");
+                //overlay.style.display = "none";
                 var overlay = document.getElementById("overlay");
-                overlay.style.display = "none";
+                overlay.classList.add("hidden");
                 playBackgroundMusic();
                 document.getElementById("typing-animation").classList.remove("hidden");
+                var skyoverlay = document.getElementById("sky-overlay");
+                skyoverlay.classList.add("hidden");
                 typeWriter(typedText, 0);
                 isTyping = true;
             }
