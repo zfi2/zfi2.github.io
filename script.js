@@ -1,4 +1,4 @@
-        var typedText = "zzzzzz";
+        var typedText = "GhosT";
         var isTyping = false;
 
         function typeWriter(text, i) {
