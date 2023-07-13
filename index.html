@@ -1,123 +1,19 @@
 <!DOCTYPE html>
 <html>
 <body>
-<head>
-    <style>
-        body {
-            background-color: #000;
-            color: #fff;
-            font-family: Arial, sans-serif;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            overflow: hidden;
-        }
-
-        #typing-animation::after {
-            content: "|";
-            animation: blink-caret 0.75s infinite;
-        }
-
-        @keyframes typing {
-            from { width: 0; }
-            to { width: 100%; }
-        }
-
-        @keyframes blink-caret {
-            from, to { opacity: 1; }
-            50% { opacity: 0; }
-        }
-
-        @keyframes backspace {
-            from { width: 100%; }
-            to { width: 0; }
-        }
-
-        audio {
-            margin-top: 20px;
-        }
-
-        .overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.8);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 999;
-        }
-
-        .overlay-text {
-            text-align: center;
-            font-size: 24px;
-        }
-
-        .hidden {
-            display: none;
-        }
-
-        .label-container {
-            display: none;
-            margin-top: 10px;
-        }
-
-        .label-container a {
-            font-size: 16px;
-            text-decoration: none;
-            color: #fff;
-            margin: 0 5px;
-        }
-
-        .label-container span {
-            font-size: 16px;
-            color: #fff;
-        }
-
-        .show {
-            display: flex;
-        }
-
-        .sky {
-          position: fixed;
-          top: 0;
-          left: 0;
-          right: 0;
-          bottom: 0;
-          z-index: -1;
-          background: linear-gradient(180deg, #455a64 0%, #b0bec5 100%);
-        }
-
-        .raindrop {
-          background: #ffffff;
-          width: 2px;
-          height: 20px;
-          border-radius: 50%;
-          position: fixed;
-          animation: 2s linear infinite rainfall;
-        }
-
-        @keyframes rainfall {
-          from {
-            transform: translateY(0);
-          }
-          to {
-            transform: translateY(200vh);
-            opacity: 0;
-          }
-        }
-    </style>
-</head>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="styles.css" type="text/css">
+    </head>
 
     <div class="overlay" id="overlay">
         <div class="overlay-text">
             <h2>click anywhere to enter</h2>
         </div>
     </div>
+    
+    <div class="sky"></div>
 
     <h1 id="typing-animation" class="hidden"></h1>
 
@@ -126,94 +22,12 @@
         your browser does not support the audio element.
     </audio>
 
-    <div class="sky"></div>
-
     <div class="label-container" id="label-container">
         <a href="https://instagram.com/">test1</a><span>|</span>
         <a href="https://youtube.com/">test2</a><span>|</span>
         <a href="https://twitter.com/">test3</a>
     </div>
 
-    <script>
-        var typedText = "GhosT";
-        var isTyping = false;
-
-        function typeWriter(text, i) {
-            if (i < text.length) {
-                document.getElementById("typing-animation").textContent += text.charAt(i);
-                i++;
-                setTimeout(function() { typeWriter(text, i); }, 100);
-            } else {
-                setTimeout(function() { backspaceText(text); }, 3000);
-            }
-        }
-
-        function backspaceText(text) {
-            var typedElement = document.getElementById("typing-animation");
-            var typedText = typedElement.textContent;
-
-            if (typedText.length > 0) {
-                typedElement.textContent = typedText.substring(0, typedText.length - 1);
-                setTimeout(function() { backspaceText(text); }, 100);
-            } else {
-                setTimeout(function() { typeWriter(text, 0); }, 1000);
-            }
-        }
-
-        function playBackgroundMusic() {
-            var backgroundMusic = document.getElementById("background-music");
-            backgroundMusic.play();
-            backgroundMusic.volume = 0.05; // Volume
-
-            // Remove the event listener to prevent the music from playing again
-            document.removeEventListener("click", playBackgroundMusic);
-
-            // Show the label container
-            var labelContainer = document.getElementById("label-container");
-            labelContainer.classList.add("show");
-        }
-
-        document.addEventListener("click", function() {
-            if (!isTyping) {
-                var overlay = document.getElementById("overlay");
-                overlay.style.display = "none";
-                playBackgroundMusic();
-                document.getElementById("typing-animation").classList.remove("hidden");
-                typeWriter(typedText, 0);
-                isTyping = true;
-            }
-        });
-    </script>
-
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script>
-        function randomIntFromInterval(min, max) {
-          return Math.floor(Math.random() * (max - min + 1) + min);
-        }
-        // Thanks to Francisc on StackOverflow for this useful function
-        // https://stackoverflow.com/questions/4959975/generate-random-number-between-two-numbers-in-javascript
-
-        function generateRain() {
-          document.querySelector(".sky").replaceChildren();
-          for (let i = 0; i < 800; i++) {
-            let opacity = randomIntFromInterval(25, 50);
-            let top = randomIntFromInterval(-100, -20);
-            let left = randomIntFromInterval(1, 100);
-            let offsetX = randomIntFromInterval(-3, 3);
-            let offsetY = randomIntFromInterval(-3, 3);
-            let delay = randomIntFromInterval(0, 4000);
-           let raindrop = document.createElement("div");
-            raindrop.classList.add("raindrop");
-            raindrop.style.opacity = `${opacity}%`;
-            raindrop.style.top = `${top}%`;
-            raindrop.style.left = `${left}%`;
-            raindrop.style.transform = `translate(${offsetX}px, ${offsetY}px`;
-            raindrop.style.animationDelay = `${delay}ms`;
-            document.querySelector(".sky").appendChild(raindrop);
-          }
-        }
-
-        generateRain();
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
