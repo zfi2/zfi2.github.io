@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+<body>
 <head>
     <style>
         body {
@@ -81,175 +82,37 @@
             display: flex;
         }
 
-        html {
-          height: 100%;
-        }
-
-        body {
-          height: 100%;
-          margin: 0;
-          overflow: hidden;
-          background: linear-gradient(to bottom, #202020, #111119);
-        }
-
-        .rain {
-          position: absolute;
-          left: 0;
-          width: 100%;
-          height: 100%;
-          z-index: 2;
-        }
-
-        .rain.back-row {
-          display: none;
-          z-index: 1;
-          bottom: 60px;
-          opacity: 0.5;
-        }
-
-        body.back-row-toggle .rain.back-row {
-          display: block;
-        }
-
-        .drop {
-          position: absolute;
-          bottom: 100%;
-          width: 15px;
-          height: 120px;
-          pointer-events: none;
-          animation: drop 0.5s linear infinite;
-        }
-
-        @keyframes drop {
-          0% {
-            transform: translateY(0vh);
-          }
-          75% {
-            transform: translateY(90vh);
-          }
-          100% {
-            transform: translateY(90vh);
-          }
-        }
-
-        .stem {
-          width: 1px;
-          height: 60%;
-          margin-left: 7px;
-          background: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.25));
-          animation: stem 0.5s linear infinite;
-        }
-
-        @keyframes stem {
-          0% {
-            opacity: 1;
-          }
-          65% {
-            opacity: 1;
-          }
-          75% {
-            opacity: 0;
-          }
-          100% {
-            opacity: 0;
-          }
-        }
-
-        .splat {
-          width: 15px;
-          height: 10px;
-          border-top: 2px dotted rgba(255, 255, 255, 0.5);
-          border-radius: 50%;
-          opacity: 1;
-          transform: scale(0);
-          animation: splat 0.5s linear infinite;
-          display: none;
-        }
-
-        body.splat-toggle .splat {
-          display: block;
-        }
-
-        @keyframes splat {
-          0% {
-            opacity: 1;
-            transform: scale(0);
-          }
-          80% {
-            opacity: 1;
-            transform: scale(0);
-          }
-          90% {
-            opacity: 0.5;
-            transform: scale(1);
-          }
-          100% {
-            opacity: 0;
-            transform: scale(1.5);
-          }
-        }
-
-        .toggles {
-          position: absolute;
+        .sky {
+          position: fixed;
           top: 0;
           left: 0;
-          z-index: 3;
+          right: 0;
+          bottom: 0;
+          z-index: -1;
+          background: linear-gradient(180deg, #455a64 0%, #b0bec5 100%);
         }
 
-        .toggle {
-          position: absolute;
-          left: 20px;
-          width: 50px;
-          height: 50px;
-          line-height: 51px;
-          box-sizing: border-box;
-          text-align: center;
-          font-family: sans-serif;
-          font-size: 10px;
-          font-weight: bold;
-          background-color: rgba(255, 255, 255, 0.2);
-          color: rgba(0, 0, 0, 0.5);
+        .raindrop {
+          background: #ffffff;
+          width: 2px;
+          height: 20px;
           border-radius: 50%;
-          cursor: pointer;
-          transition: background-color 0.3s;
+          position: fixed;
+          animation: 2s linear infinite rainfall;
         }
 
-        .toggle:hover {
-          background-color: rgba(255, 255, 255, 0.25);
-        }
-
-        .toggle:active {
-          background-color: rgba(255, 255, 255, 0.3);
-        }
-
-        .toggle.active {
-          background-color: rgba(255, 255, 255, 0.4);
-        }
-
-        .splat-toggle {
-          top: 20px;
-        }
-
-        .back-row-toggle {
-          top: 90px;
-          line-height: 12px;
-          padding-top: 14px;
-        }
-
-        .single-toggle {
-          top: 160px;
-        }
-
-        body.single-toggle .drop {
-          display: none;
-        }
-
-        body.single-toggle .drop:nth-child(10) {
-          display: block;
+        @keyframes rainfall {
+          from {
+            transform: translateY(0);
+          }
+          to {
+            transform: translateY(200vh);
+            opacity: 0;
+          }
         }
     </style>
 </head>
-<body>
+
     <div class="overlay" id="overlay">
         <div class="overlay-text">
             <h2>click anywhere to enter</h2>
@@ -263,14 +126,15 @@
         your browser does not support the audio element.
     </audio>
 
+    <div class="sky"></div>
+
     <div class="label-container" id="label-container">
-        <!--<a href="">hello</a>
-        <span>|</span>
-        -->
-        <a href="">test</a>
+        <a href="https://instagram.com/">test1</a><span>|</span>
+        <a href="https://youtube.com/">test2</a><span>|</span>
+        <a href="https://twitter.com/">test3</a>
     </div>
 
-        <script>
+    <script>
         var typedText = "GhosT";
         var isTyping = false;
 
@@ -321,38 +185,35 @@
         });
     </script>
 
-    <div class="rain front"></div>
-    <div class="rain front-row"></div>
-    <div class="rain back-row"></div>
-
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
-        var makeItRain = function() {
-          //clear out everything
-          $('.rain').empty();
+        function randomIntFromInterval(min, max) {
+          return Math.floor(Math.random() * (max - min + 1) + min);
+        }
+        // Thanks to Francisc on StackOverflow for this useful function
+        // https://stackoverflow.com/questions/4959975/generate-random-number-between-two-numbers-in-javascript
 
-          var increment = 0;
-          var drops = "";
-          var backDrops = "";
-
-          while (increment < 100) {
-            //couple random numbers to use for various randomizations
-            //random number between 98 and 1
-            var randoHundo = (Math.floor(Math.random() * (98 - 1 + 1) + 1));
-            //random number between 5 and 2
-            var randoFiver = (Math.floor(Math.random() * (5 - 2 + 1) + 2));
-            //increment
-            increment += randoFiver;
-            //add in a new raindrop with various randomizations to certain CSS properties
-            drops += '<div class="drop" style="left: ' + increment + '%; bottom: ' + (randoFiver + randoFiver - 1 + 100) + '%; animation-delay: 0.' + randoHundo + 's; animation-duration: 0.5' + randoHundo + 's;"><div class="stem" style="animation-delay: 0.' + randoHundo + 's; animation-duration: 0.5' + randoHundo + 's;"></div><div class="splat" style="animation-delay: 0.' + randoHundo + 's; animation-duration: 0.5' + randoHundo + 's;"></div></div>';
-            backDrops += '<div class="drop" style="right: ' + increment + '%; bottom: ' + (randoFiver + randoFiver - 1 + 100) + '%; animation-delay: 0.' + randoHundo + 's; animation-duration: 0.5' + randoHundo + 's;"><div class="stem" style="animation-delay: 0.' + randoHundo + 's; animation-duration: 0.5' + randoHundo + 's;"></div><div class="splat" style="animation-delay: 0.' + randoHundo + 's; animation-duration: 0.5' + randoHundo + 's;"></div></div>';
+        function generateRain() {
+          document.querySelector(".sky").replaceChildren();
+          for (let i = 0; i < 800; i++) {
+            let opacity = randomIntFromInterval(25, 50);
+            let top = randomIntFromInterval(-100, -20);
+            let left = randomIntFromInterval(1, 100);
+            let offsetX = randomIntFromInterval(-3, 3);
+            let offsetY = randomIntFromInterval(-3, 3);
+            let delay = randomIntFromInterval(0, 4000);
+           let raindrop = document.createElement("div");
+            raindrop.classList.add("raindrop");
+            raindrop.style.opacity = `${opacity}%`;
+            raindrop.style.top = `${top}%`;
+            raindrop.style.left = `${left}%`;
+            raindrop.style.transform = `translate(${offsetX}px, ${offsetY}px`;
+            raindrop.style.animationDelay = `${delay}ms`;
+            document.querySelector(".sky").appendChild(raindrop);
           }
-
-          $('.rain.front-row').append(drops);
-          $('.rain.back-row').append(backDrops);
         }
 
-        makeItRain();
+        generateRain();
     </script>
 </body>
 </html>
