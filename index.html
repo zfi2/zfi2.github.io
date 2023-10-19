@@ -14,6 +14,8 @@
 </div>
 
 <script>
+    hideOverlay();
+
     document.addEventListener("DOMContentLoaded", function () {
     const video = document.getElementById("intro-video");
     const progressBar = document.querySelector(".progress");
@@ -54,6 +56,7 @@
             video.src = videoURL;
             video.style.display = "block"; // Show the video
             progressBar.style.display = "none"; // Hide the progress bar
+            showOverlay();
             video.play(); // Start playing the video
         })
         .catch(error => {
@@ -113,6 +116,16 @@
         } else {
             setTimeout(function() { typeWriter(text, 0); }, 1000);
         }
+    }
+
+    // Hide the "click anywhere to exit" overlay
+    function showOverlay() {
+    var overlay = document.getElementById("overlay");
+    var video = document.getElementById("intro-video");
+    overlay.classList.add("fade-in");
+    //  var video = document.getElementById("intro-video");
+    video.pause();
+    video.currentTime = 0;
     }
 
     // Hide the "click anywhere to exit" overlay

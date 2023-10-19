@@ -143,6 +143,10 @@ audio, video {
     transition: opacity 0.5s ease;
 }
 
+.overlay.fade-in {
+    opacity: 100;
+  }
+
 .overlay.fade-out {
     opacity: 0;
 }
