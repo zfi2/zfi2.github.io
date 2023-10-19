@@ -13,24 +13,13 @@
     </div>
 </div>
 
-<!-- Initialize the "click anywhere to enter" overlay -->
-<div class="overlay" id="overlay">
-    <video id="intro-video" style="width: 110%; height: auto;">
-        <source src="intro.mp4" type="video/mp4">
-        your browser does not support the video element.
-    </video>
-    <div class="overlay-text">
-        <h1 class="glitch" data-text="click anywhere to enter">click anywhere to enter</h1>
-    </div>
-</div>
-
 <script>
-document.addEventListener("DOMContentLoaded", function () {
+    document.addEventListener("DOMContentLoaded", function () {
     const video = document.getElementById("intro-video");
     const progressBar = document.querySelector(".progress");
 
     // Fetch the video file and track the download progress
-    fetch("intro.mp4")
+    fetch("https://github.com/zfi2/zfi2.github.io/raw/main/intro.mp4")
         .then(response => {
             const contentLength = Number(response.headers.get("Content-Length"));
             let receivedLength = 0;
@@ -63,8 +52,8 @@ document.addEventListener("DOMContentLoaded", function () {
         .then(blob => {
             const videoURL = URL.createObjectURL(blob);
             video.src = videoURL;
-            progressBar.style.display = "none"; // Hide the progress bar
             video.style.display = "block"; // Show the video
+            progressBar.style.display = "none"; // Hide the progress bar
             video.play(); // Start playing the video
         })
         .catch(error => {
@@ -72,6 +61,17 @@ document.addEventListener("DOMContentLoaded", function () {
         });
 });
 </script>
+
+<!-- Initialize the "click anywhere to enter" overlay -->
+<div class="overlay" id="overlay">
+    <video id="intro-video" style="width: 110%; height: auto;">
+        <source src="intro.mp4" type="video/mp4">
+        your browser does not support the video element.
+    </video>
+    <div class="overlay-text">
+        <h1 class="glitch" data-text="click anywhere to enter">click anywhere to enter</h1>
+    </div>
+</div>
 
 
 <!-- Make the typing animation hidden at first, because the overlay is still here -->
