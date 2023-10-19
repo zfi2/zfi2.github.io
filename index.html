@@ -1,34 +1,96 @@
 <!DOCTYPE html>
 <html>
-<body>
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="styles.css" type="text/css">
-    </head>
+<head>
+    <!-- stupid ass fucking title -->
+    <title>Bio Website</title>
+    <link rel="stylesheet" type="text/css" href="glitch.css">
+</head>
 
-    <div class="overlay" id="overlay">
-        <div class="overlay-text">
-            <h2>click anywhere to enter</h2>
-        </div>
+<!-- Initialize the "click anywhere to enter" overlay -->
+<div class="overlay" id="overlay">
+    <video id="intro-video" autoplay muted style="width: 110%; height: auto;">
+        <source src="intro.mp4" type="video/mp4">
+        your browser does not support the video element.
+    </video>
+    <div class="overlay-text">
+        <h1 class="glitch" data-text="click anywhere to enter">click anywhere to enter</h1>
     </div>
+</div>
 
-    <div class="sky-overlay" id="sky-overlay"></div>
-    <div class="sky"></div>
 
-    <h1 id="typing-animation" class="hidden"></h1>
+<!-- Make the typing animation hidden at first, because the overlay is still here -->
+<h1 id="typing-animation" class="hidden"></h1>
 
-    <audio id="background-music" loop>
-        <source src="music.mp3" type="audio/mpeg">
-        your browser does not support the audio element
-    </audio>
+<!-- Initialize the background music -->
+<audio id="background-music" loop>
+    <source src="music.mp3" type="audio/mpeg">
+    your browser does not support the audio element.
+</audio>
 
-    <div class="label-container" id="label-container">
-        <a href="https://instagram.com/">test1</a><span>|</span>
-        <a href="https://youtube.com/">test2</a><span>|</span>
-        <a href="https://twitter.com/">test3</a>
-    </div>
-    
-    <script src="script.js"></script>
+<script>
+    var typedText = "GhosT";
+    var isTyping = false;
+
+    /*
+    Script for the typing animation
+    */
+    function typeWriter(text, i) {
+        if (i < text.length) {
+            document.getElementById("typing-animation").textContent += text.charAt(i);
+            i++;
+            setTimeout(function() { typeWriter(text, i); }, 100);
+        } else {
+            setTimeout(function() { backspaceText(text); }, 3000);
+        }
+    }
+
+    /*
+    Script for gradually removing the face during the typing animation
+    */
+    function backspaceText(text) {
+        var typedElement = document.getElementById("typing-animation");
+        var typedText = typedElement.textContent;
+
+        if (typedText.length > 0) {
+            typedElement.textContent = typedText.substring(0, typedText.length - 1);
+            setTimeout(function() { backspaceText(text); }, 100);
+        } else {
+            setTimeout(function() { typeWriter(text, 0); }, 1000);
+        }
+    }
+
+    // Hide the "click anywhere to exit" overlay
+    function hideOverlay() {
+        var overlay = document.getElementById("overlay");
+        var video = document.getElementById("intro-video");
+        overlay.classList.add("fade-out");
+    //  var video = document.getElementById("intro-video");
+        video.pause();
+        video.currentTime = 0;
+    }
+
+    // Script for playing the background music
+    function playBackgroundMusic() {
+        var backgroundMusic = document.getElementById("background-music");
+        backgroundMusic.play();
+        backgroundMusic.volume = 0.1;
+
+        document.removeEventListener("click", playBackgroundMusic);
+    }
+
+    /*
+    Hide the overlay and play the background music upon clicking
+    anywhere on the page, also start the typing animation
+    */
+    document.addEventListener("click", function() {
+        if (!isTyping) {
+            hideOverlay();
+            playBackgroundMusic();
+            document.getElementById("typing-animation").classList.remove("hidden");
+            typeWriter(typedText, 0);
+            isTyping = true;
+        }
+    });
+</script>
 </body>
 </html>
