@@ -6,68 +6,9 @@
     <link rel="stylesheet" type="text/css" href="glitch.css">
 </head>
 
-<!-- pogress ba r -->
-<div class="progress-container">
-    <div class="progress-bar">
-        <div class="progress"></div>
-    </div>
-</div>
-
-<script>
-    hideOverlay();
-
-    document.addEventListener("DOMContentLoaded", function () {
-    const video = document.getElementById("intro-video");
-    const progressBar = document.querySelector(".progress");
-
-    // Fetch the video file and track the download progress
-    fetch("https://github.com/zfi2/zfi2.github.io/raw/main/intro.mp4")
-        .then(response => {
-            const contentLength = Number(response.headers.get("Content-Length"));
-            let receivedLength = 0;
-
-            const reader = response.body.getReader();
-
-            return new ReadableStream({
-                async start(controller) {
-                    while (true) {
-                        const { done, value } = await reader.read();
-
-                        if (done) {
-                            break;
-                        }
-
-                        receivedLength += value.length;
-                        const progress = (receivedLength / contentLength) * 100;
-                        progressBar.style.width = progress + "%";
-                        controller.enqueue(value);
-                    }
-
-                    controller.close();
-                }
-            });
-        })
-        .then(stream => {
-            return new Response(stream, { headers: { "Content-Type": "video/mp4" } });
-        })
-        .then(response => response.blob())
-        .then(blob => {
-            const videoURL = URL.createObjectURL(blob);
-            video.src = videoURL;
-            video.style.display = "block"; // Show the video
-            progressBar.style.display = "none"; // Hide the progress bar
-            showOverlay();
-            video.play(); // Start playing the video
-        })
-        .catch(error => {
-            console.error("Error loading the video:", error);
-        });
-});
-</script>
-
 <!-- Initialize the "click anywhere to enter" overlay -->
 <div class="overlay" id="overlay">
-    <video id="intro-video" style="width: 110%; height: auto;">
+    <video id="intro-video" autoplay muted style="width: 110%; height: auto;">
         <source src="intro.mp4" type="video/mp4">
         your browser does not support the video element.
     </video>
@@ -75,7 +16,6 @@
         <h1 class="glitch" data-text="click anywhere to enter">click anywhere to enter</h1>
     </div>
 </div>
-
 
 <!-- Make the typing animation hidden at first, because the overlay is still here -->
 <h1 id="typing-animation" class="hidden"></h1>
@@ -116,16 +56,6 @@
         } else {
             setTimeout(function() { typeWriter(text, 0); }, 1000);
         }
-    }
-
-    // Hide the "click anywhere to exit" overlay
-    function showOverlay() {
-    var overlay = document.getElementById("overlay");
-    var video = document.getElementById("intro-video");
-    overlay.classList.add("fade-in");
-    //  var video = document.getElementById("intro-video");
-    video.pause();
-    video.currentTime = 0;
     }
 
     // Hide the "click anywhere to exit" overlay
