@@ -51,7 +51,7 @@ function startSentenceRain() {
     }
 
     // Create sentences at intervals for the raining effect
-    setInterval(createSentence, 250);
+    setInterval(createSentence, 450);
 }
 
 

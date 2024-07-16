@@ -51,18 +51,18 @@ const s_filteredWords = [ // Add words to filter by putting them in quotes and s
 ]
 
 // Text - Change what messages/text appear on the form and in the comments section (Mostly self explanatory)
-const s_widgetTitle = 'Leave a comment!';
-const s_nameFieldLabel = 'Name';
-const s_websiteFieldLabel = 'Website (Optional)';
+const s_widgetTitle = 'leave something after yourself...';
+const s_nameFieldLabel = 'your name';
+const s_websiteFieldLabel = 'your website (optional)';
 const s_textFieldLabel = '';
-const s_submitButtonLabel = 'Submit';
-const s_loadingText = 'Loading comments...';
-const s_noCommentsText = 'No comments yet!';
-const s_closedCommentsText = 'Comments are closed.';
-const s_websiteText = 'Website'; // The links to websites left by users on their comments
-const s_replyButtonText = 'Reply'; // The button for replying to someone
-const s_replyingText = 'Replying to'; // The text that displays while the user is typing a reply
-const s_expandRepliesText = 'Show Replies';
+const s_submitButtonLabel = 'submit';
+const s_loadingText = 'loading comments...';
+const s_noCommentsText = 'no comments to show';
+const s_closedCommentsText = 'comments are closed...';
+const s_websiteText = 'website'; // The links to websites left by users on their comments
+const s_replyButtonText = 'reply'; // The button for replying to someone
+const s_replyingText = 'replying to'; // The text that displays while the user is typing a reply
+const s_expandRepliesText = 'show replies';
 const s_leftButtonText = '<<';
 const s_rightButtonText = '>>';
 
