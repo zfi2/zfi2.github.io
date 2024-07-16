@@ -18,16 +18,16 @@
 
 // The values in this section are REQUIRED for the widget to work! Keep them in quotes!
 const s_stylePath = 'comment-widget.css';
-const s_formId = '1FAIpQLSeFPoTfnXndm1vItVJ40KDGruob8XDcKX07YoncxU3AR4O5Jw';
-const s_nameId = '332040610';
-const s_websiteId = '329314408';
-const s_textId = '423328337';
-const s_pageId = '462804753';
-const s_replyId = '115268008';
-const s_sheetId = '1OjproskNJULv3KpK25YnecSWK_fXP0cWzlKFEAbudpc';
+const s_formId = '1FAIpQLScXBkdAKk3NN9SjBujolcs7HYk4PO6NJqcfQrpl6tGb00pVbA';
+const s_nameId = '1884801234';
+const s_websiteId = '1690531918';
+const s_textId = '1205488592';
+const s_pageId = '2069210201';
+const s_replyId = '2014704911';
+const s_sheetId = '1_ZFq-oKYVOG5vgtLKP-GWMWrnjGP1QYCyNGUY3V4nNI';
 
 // The values below are necessary for accurate timestamps, I've filled it in with EST as an example
-const s_timezone = -5; // Your personal timezone (Example: UTC-5:00 is -5 here, UTC+10:30 would be 10.5)
+const s_timezone = 2; // Your personal timezone (Example: UTC-5:00 is -5 here, UTC+10:30 would be 10.5)
 const s_daylightSavings = true; // If your personal timezone uses DST, set this to true
 // For the dates DST start and end where you live: [Month, Weekday, which number of that weekday, hour (24 hour time)]
 const s_dstStart = ['March', 'Sunday', 2, 2]; // Example shown is the second Sunday of March at 2:00 am
