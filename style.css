@@ -326,13 +326,13 @@ body {
 
 .social-links {
   position: fixed;
-  left: 0;
-  right: 0;
   text-align: center;
   z-index: 998;
   font-size: 1.5em;
   letter-spacing: 0.2em;
   font-family: azuki_font;
+  width: auto; /* This will make the container only as wide as its content */
+  white-space: nowrap; /* Prevent wrapping of inline-block elements */
 }
 
 .social-links a {
