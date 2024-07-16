@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css?family=Montserrat:100");
+@font-face { font-family: azuki_font; src: url('azuki.ttf'); } 
 
 /* Our mixin positions a copy of our text
 directly on our existing text, while
@@ -259,7 +260,7 @@ Also adds a very subtle skew to change the 'thickness' of the glitch.*/
 body {
   background-color: #000;
   color: #fff;
-  font-family: "Montserrat", sans-serif;
+  font-family: azuki_font;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -331,6 +332,7 @@ body {
   z-index: 998;
   font-size: 1.5em;
   letter-spacing: 0.2em;
+  font-family: azuki_font;
 }
 
 .social-links a {
@@ -338,12 +340,13 @@ body {
   margin: 0 10px;
   color: white;
   text-decoration: none;
-  text-shadow: 0 0 5px rgba(255, 255, 255, 0.7);
+  text-shadow: 0 0 5px rgba(216, 5, 5, 0.7);
   transition: text-shadow 0.3s ease;
+  color: red;
 }
 
 .social-links a:hover {
-  text-shadow: 0 0 10px rgba(255, 255, 255, 1);
+  text-shadow: 0 0 10px rgb(216, 46, 46);
 }
 
 a {
