@@ -1,62 +1,67 @@
-var typedText = "GhosT";
-var isTyping = false;
-
-// Script for the typing animation
-function typeWriter(text, i) {
-    if (i < text.length) {
-        document.getElementById("typing-animation").textContent += text.charAt(i);
-        i++;
-        setTimeout(function() { typeWriter(text, i); }, 100);
-    } else {
-        setTimeout(function() { backspaceText(text); }, 3000);
-    }
-}
-
-// Script for gradually removing the text during the typing animation
-function backspaceText(text) {
-    var typedElement = document.getElementById("typing-animation");
-    var typedText = typedElement.textContent;
-
-    if (typedText.length > 0) {
-        typedElement.textContent = typedText.substring(0, typedText.length - 1);
-        setTimeout(function() { backspaceText(text); }, 100);
-    } else {
-        setTimeout(function() { typeWriter(text, 0); }, 1000);
-    }
-}
-
 // Hide the "click anywhere to exit" overlay
 function hideOverlay() {
+    var video = document.getElementById("background-video");
+    video.style.opacity = 0.35;
+
     var overlay = document.getElementById("overlay");
-    var video = document.getElementById("intro-video");
     overlay.classList.add("fade-out");
 
-    video.pause();
-    video.currentTime = 0;
+    // God damn this is a mess...
+    var topLabel = document.getElementById("top-label");
+    topLabel.style.opacity = 0.5;
 
-    var bottomLabel = document.getElementById("bottom-label");
-    bottomLabel.style.opacity = 0.5;
+    var socialLinks = document.getElementById("social-links");
+    socialLinks.style.opacity = 0.5
+    socialLinks.style.zIndex = 999;
+
+    var widget = document.getElementById("c_widget");
+    widget.style.opacity = 0.5
+
+    video.play();
+    video.muted = false;
+    video.volume = 0.4;
 }
 
-// Script for playing the background music
-function playBackgroundMusic() {
-    var backgroundMusic = document.getElementById("background-music");
-    backgroundMusic.play();
-    backgroundMusic.volume = 0.1;
+function startSentenceRain() {
+    const sentence = "do not worry"; // Your sentence here
 
-    document.removeEventListener("click", playBackgroundMusic);
+    function createSentence() {
+        // Create a new sentence element
+        const sentenceElement = $("<div class='sentence glitch-effect'></div>").text(sentence);
+        
+        // Set random initial position
+        const startPositionX = Math.random() * $(window).width(); // Random horizontal position
+        const startPositionY = -50 - Math.random() * 200; // Random vertical position above viewport
+        
+        sentenceElement.css({
+            top: startPositionY + "px",
+            left: startPositionX + "px",
+        });
+        
+        // Append sentence to container
+        $(".sentence-rain").append(sentenceElement);
+        
+        // Animate falling and fading out
+        sentenceElement.animate({
+            top: $(window).height() + "px", // Falls to the bottom of the viewport
+            opacity: 0 // Fades out completely
+        }, 5000, "linear", function() {
+            $(this).remove(); // Remove the sentence after animation completes
+        });
+    }
+
+    // Create sentences at intervals for the raining effect
+    setInterval(createSentence, 250); // Adjust timing as needed
 }
+
 
 /*
 Hide the overlay and play the background music upon clicking
 anywhere on the page, also start the typing animation
 */
 document.addEventListener("click", function() {
-    if (!isTyping) {
-        hideOverlay();
-        playBackgroundMusic();
-        document.getElementById("typing-animation").classList.remove("hidden");
-        typeWriter(typedText, 0);
-        isTyping = true;
-    }
+    hideOverlay();
+    startSentenceRain();
 });
+
+
