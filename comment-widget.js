@@ -160,15 +160,9 @@ c_replyInput = document.getElementById('entry.' + s_replyId);
 // Add the invisible iFrame to the document for catching the default Google Forms submisson page
 let v_submitted = false;
 let c_hiddenIframe = document.createElement('iframe');
-c_hiddenIframe.id = 'c_hiddenIframe';
-c_hiddenIframe.name = 'c_hiddenIframe';
-c_hiddenIframe.style.display = 'none';
-c_hiddenIframe.onload = function() {
-    if (v_submitted) {
-        window.fixFrame();
-    }
-};
+c_hiddenIframe.id = 'c_hiddenIframe'; c_hiddenIframe.name = 'c_hiddenIframe'; c_hiddenIframe.style.display = 'none'; c_hiddenIframe.setAttribute('onload', 'if(v_submitted){fixFrame()}');
 c_form.appendChild(c_hiddenIframe);
+c_hiddenIframe = document.getElementById('c_hiddenIframe');
 
 // Fix the invisible iFrame so it doesn't keep trying to load stuff
 function fixFrame() {
