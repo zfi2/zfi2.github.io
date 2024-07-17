@@ -1,0 +1,168 @@
+@import url("https://fonts.googleapis.com/css?family=Montserrat:100");
+@font-face {
+    font-family: azuki_font;
+    src: url('../other/azuki.ttf');
+}
+
+:root {
+    --primary-color: red;
+    --secondary-color: white;
+    --background-color: #000;
+    --overlay-opacity: 0.8;
+}
+
+body {
+    background-color: var(--background-color);
+    color: var(--secondary-color);
+    font-family: azuki_font, sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
+    margin: 0;
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, var(--overlay-opacity));
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+    transition: opacity 0.5s ease;
+}
+
+.overlay.fade-out {
+    opacity: 0;
+}
+
+.overlay-text {
+    text-align: center;
+    font-size: 24px;
+    position: absolute;
+    z-index: 999;
+    opacity: 0.5;
+}
+
+.hidden {
+    display: none;
+}
+
+.container {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.top-label {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    text-align: center;
+    color: var(--secondary-color);
+    padding: 10px 0;
+    z-index: 1001;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.social-links {
+    position: fixed;
+    text-align: center;
+    z-index: 998;
+    font-size: 1.5em;
+    letter-spacing: 0.2em;
+    font-family: azuki_font;
+    width: auto;
+    white-space: nowrap;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+.social-links a {
+    margin: 10px 0;
+    color: var(--primary-color);
+    text-decoration: none;
+    text-shadow: 0 0 5px rgba(216, 5, 5, 0.7);
+    transition: text-shadow 0.3s ease;
+}
+
+.social-links a:hover {
+    text-shadow: 0 0 10px rgb(216, 46, 46);
+}
+
+a {
+    color: var(--secondary-color);
+    text-decoration: none;
+    margin: 0 20px;
+    text-align: center;
+    display: block;
+    font-size: 1em;
+}
+
+#disclaimer {
+    color: var(--primary-color);
+    text-decoration: none;
+    margin: 0 20px;
+    text-align: center;
+    display: block;
+    font-size: 1em;
+}
+
+.video-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+#video-placeholder {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+#background-video {
+    opacity: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: auto;
+    height: auto;
+    min-width: 100%;
+    min-height: 100%;
+    transition: opacity 0.5s ease;
+}
+
+.sentence-rain {
+    z-index: 996;
+    position: absolute;
+    top: -50px;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+.sentence {
+    z-index: 995;
+    white-space: nowrap;
+    position: absolute;
+    opacity: 0.1;
+    font-size: 18px;
+    font-family: Arial, sans-serif;
+    color: var(--primary-color);
+}
