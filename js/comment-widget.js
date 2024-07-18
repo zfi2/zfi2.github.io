@@ -1,5 +1,18 @@
 /*
-    Full credits for this widget go to:
+    (PLEASE DO NOT DELETE THIS HEADER OR CREDIT!)
+
+    User customizable settings below!
+    Please refer to my guide over on https://virtualobserver.moe/ayano/comment-widget if you're confused on how to use this.
+    The IDs at the top are a requirement but everything else is optional!
+    Do not delete any settings even if you aren't using them! It could break the program.
+
+    After filling out your options, just paste this anywhere you want a comment section
+    (But change the script src URL to wherever you have this widget stored on your site!)
+
+        <div id="c_widget"></div>
+        <script src="comment-widget.js"></script>
+
+    Have fun! Bug reports are encouraged if you happen to run into any issues.
     - Ayano (https://virtualobserver.moe/)
 */
 
@@ -40,7 +53,7 @@ const s_filteredWords = [ // Add words to filter by putting them in quotes and s
 // Text - Change what messages/text appear on the form and in the comments section (Mostly self explanatory)
 const s_widgetTitle = 'leave something after yourself...';
 const s_nameFieldLabel = 'your name';
-const s_websiteFieldLabel = 'your website (optional)';
+const s_websiteFieldLabel = '(disabled, ignore for now)';
 const s_textFieldLabel = '';
 const s_submitButtonLabel = 'submit';
 const s_loadingText = 'loading comments...';
