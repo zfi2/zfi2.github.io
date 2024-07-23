@@ -24,7 +24,7 @@ document.addEventListener("DOMContentLoaded", () => {
             didClick = true;
             showMainContent();
             removeBlockingOverlay();
-            // Remove the console element immediately
+            
             if (elements.consoleElement.parentNode) {
                 elements.consoleElement.classList.add('console-fade-out');
                 elements.consoleElement.addEventListener('transitionend', () => {
@@ -33,7 +33,6 @@ document.addEventListener("DOMContentLoaded", () => {
             }
             elements.disclaimerLabel.style.opacity = 0;
 
-            // Remove the click event listener to prevent further processing
             document.removeEventListener("click", handleClick);
         }
     }
@@ -107,7 +106,7 @@ document.addEventListener("DOMContentLoaded", () => {
             '<br>root@lain~$ ',
             'enter-wired',
             '<br>Logging into The Wired...',
-            '<br>Access granted. Loading... ', // We'll append the loading bar to this line
+            '<br>Access granted. Loading... ',
             '<br>You have successfully entered The Wired.<span style="color: red; opacity: 0.02;"><br>nothing here is real. try to stay yourself.</span>',
             '<br><br>Click anywhere to continue.'
         ];

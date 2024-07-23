@@ -13,7 +13,6 @@
     --console-color: #6bd6e7;
 }
 
-/* General Styles */
 body {
     background-color: var(--background-color);
     color: var(--secondary-color);
@@ -64,7 +63,20 @@ body {
     z-index: 1002;
 }
 
-/* Social Links */
+.im-still-searching-for-you {
+    font-size: 1em;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    text-align: center;
+    color: var(--secondary-color);
+    padding: 10px 0;
+    z-index: 1003;
+    opacity: 0.2;
+    animation: fluctuate-opacity 5s ease-in-out infinite;
+}
+
 .social-links {
     position: fixed;
     text-align: center;
@@ -91,7 +103,6 @@ body {
     text-shadow: 0 0 10px rgb(216, 46, 46);
 }
 
-/* General Links */
 a {
     color: var(--secondary-color);
     text-decoration: none;
@@ -129,7 +140,6 @@ a {
     transform: translate(-50%, -50%);
 }
 
-/* Sentence Rain */
 .sentence-rain {
     z-index: 996;
     font-family: 'azuki_font';
@@ -151,7 +161,6 @@ a {
     color: var(--primary-color);
 }
 
-/* Console */
 .console {
     font-family: 'Courier New', Courier, monospace;
     color: var(--console-color);
@@ -217,7 +226,6 @@ a {
     animation: blink 1s step-start infinite;
 }
 
-/* Blocking Overlay */
 .blocking-overlay {
     position: fixed;
     top: 0;
@@ -226,4 +234,25 @@ a {
     height: 100%;
     z-index: 999;
     opacity: 1;
+}
+
+@keyframes fluctuate-opacity {
+    0% { opacity: 0.1; }
+    50% { opacity: 0.2; }
+    100% { opacity: 0.1; }
+}
+
+.background-image {
+    background-image: url('../other/ascii_art_lain.gif');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.2;
+    z-index: -1; 
+    animation: fluctuate-opacity 5s ease-in-out infinite;
 }
