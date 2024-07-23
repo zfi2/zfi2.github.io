@@ -1,0 +1,140 @@
+@font-face { font-family: azuki_font; src: url('../other/azuki.ttf') } 
+
+/* Main */
+#c_widget {
+    box-sizing: border-box;
+    width: 21%; /* Changed from 50% to 25% */
+    padding: 10px;
+    font-family: azuki_font;
+    font-size: 12px;
+    color: white;
+    position: fixed;
+    bottom: 0;
+    left: 0; /* Changed from 50% to 0 */
+    z-index: 1000;
+    text-align: center;
+}
+
+#c_widget button, #c_widget input[type=submit] {
+    padding: 4px 10px; /* Increased horizontal padding to make it wider */
+    font-size: 10px;
+    margin: 0 auto;
+    display: block;
+    background-color: transparent; /* Made the background transparent */
+    color: white; /* Changed text color to white */
+    border: 1px solid white; /* Added a white border for visibility */
+    cursor: pointer; /* Added cursor pointer for better UX */
+    transition: background-color 0.3s, color 0.3s; /* Added transition for hover effect */
+}
+
+#c_widget button:hover, #c_widget input[type=submit]:hover {
+    background-color: rgba(255, 255, 255, 0.2); /* Slight white background on hover */
+}
+
+/* Input section */
+#c_inputDiv {
+    margin-bottom: 8px;
+    padding: 5px;
+    border: 1px solid white;
+}
+
+#c_widgetTitle {
+    margin: -5px -5px 5px -5px;
+    padding: 3px;
+    font-size: 14px;
+    text-align: center; /* Changed from right to center */
+}
+
+.c-inputWrapper {
+    margin-bottom: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Added to center input elements */
+}
+
+.c-label {
+    margin-bottom: 3px;
+    font-size: 11px;
+}
+
+.c-input, .c-textInput {
+    font-family: azuki_font;
+    background-color: transparent;
+    color: white;
+    border: 1px solid white;
+    outline: none;
+    width: 90%; /* Set the width to 90% of its container */
+    box-sizing: border-box; /* Include padding and border in the element's total width and height */
+    padding: 5px; /* Add some padding for better appearance */
+    margin-bottom: 5px; /* Add some space below the input */
+}
+
+.c-textInput {
+    height: 60px; /* Set a fixed height for the textarea */
+    resize: vertical; /* Allow vertical resizing only */
+}
+
+.c-websiteInput {
+    pointer-events: none;
+    background-color: rgba(255, 255, 255, 0.1);
+    cursor: not-allowed;
+    opacity: 0.7;
+    border-style: dashed;
+}
+
+.c-input::placeholder, .c-textInput::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+/* Comment section */
+.c-comment {
+    margin-bottom: 8px;
+    padding: 5px;
+    border: 1px solid white;
+    text-align: center; /* Added to center comment content */
+}
+
+.c-reply {
+    width: 95%;
+    margin: 0 auto 5px auto; /* Changed to center replies */
+    padding: 5px;
+    border: 1px solid white;
+}
+
+.c-replyContainer {
+    margin: -5px;
+    margin-top: 5px;
+    padding: 5px;
+}
+
+.c-name {
+    margin-right: 5px;
+    font-size: 12px;
+    display: inline-block; /* Added to keep name and timestamp on same line */
+}
+
+.c-timestamp {
+    font-size: 10px;
+    display: inline-block; /* Added to keep name and timestamp on same line */
+}
+
+.c-text {
+    margin: 5px 0; /* Changed from negative margins */
+    padding: 5px;
+    font-size: 11px;
+}
+
+/* Pagination */
+#c_pagination {
+    text-align: center; /* Ensure pagination is centered */
+}
+
+.c-replyButton, .c-expandButton {
+    margin: 5px auto 0 auto; /* Changed to center buttons */
+    display: inline-block; /* Changed to allow buttons to be side by side */
+}
+
+.c-paginationButton {
+    margin: 0 2px;
+    display: inline-block; /* Ensure pagination buttons are side by side */
+}
