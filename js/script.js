@@ -11,6 +11,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     let didClick = false;
     let consoleFinished = false;
+    let consoleMessageComplete = false;
 
     function initializeElements() {
         elements.consoleElement.classList.add('console');
@@ -20,21 +21,25 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     function handleClick() {
-        if (!didClick && consoleFinished) {
+        if (consoleMessageComplete && !didClick) {
             didClick = true;
-            showMainContent();
-            removeBlockingOverlay();
-            
-            if (elements.consoleElement.parentNode) {
-                elements.consoleElement.classList.add('console-fade-out');
-                elements.consoleElement.addEventListener('transitionend', () => {
-                    elements.consoleElement.remove();
-                });
-            }
-            elements.disclaimerLabel.style.opacity = 0;
-
-            document.removeEventListener("click", handleClick);
+            removeConsole();
         }
+    }
+    
+    function removeConsole() {
+        if (elements.consoleElement.parentNode) {
+            elements.consoleElement.classList.add('console-fade-out');
+            elements.consoleElement.addEventListener('transitionend', () => {
+                elements.consoleElement.remove();
+            });
+        }
+        elements.disclaimerLabel.style.opacity = 0;
+
+        showMainContent();
+        removeBlockingOverlay();
+
+        document.removeEventListener("click", handleClick);
     }
     
     function removeBlockingOverlay() {
@@ -69,7 +74,7 @@ document.addEventListener("DOMContentLoaded", () => {
         video.autoplay = true;
         video.loop = true;
         video.playsInline = true;
-        video.style.opacity = 0;
+        video.style.opacity = 0.2;
         video.muted = false;
         video.volume = 0.1;
 
@@ -177,6 +182,9 @@ document.addEventListener("DOMContentLoaded", () => {
                     animateLoading(() => typeLine(index + 1));
                 } else {
                     consoleElement.innerHTML += lines[index];
+                    if (index === lines.length - 1) {
+                        consoleMessageComplete = true;
+                    }
                     setTimeout(() => typeLine(index + 1), index === 2 ? passwordPause : pauseBetweenLines);
                 }
             } else {
@@ -190,6 +198,9 @@ document.addEventListener("DOMContentLoaded", () => {
     initializeElements();
     simulateShell(elements.consoleElement, () => {
         consoleFinished = true;
+        if (clickRegistered) {
+            removeConsole();
+        }
     });
     document.addEventListener("click", handleClick);
 });

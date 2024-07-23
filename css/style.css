@@ -26,6 +26,15 @@ body {
     margin: 0;
 }
 
+a {
+    color: var(--secondary-color);
+    text-decoration: none;
+    margin: 0 20px;
+    text-align: center;
+    display: block;
+    font-size: 1em;
+}
+
 .hidden {
     display: none;
 }
@@ -37,7 +46,6 @@ body {
     padding: 0;
 }
 
-/* Top Label */
 .top-label {
     position: fixed;
     top: 0;
@@ -73,8 +81,7 @@ body {
     color: var(--secondary-color);
     padding: 10px 0;
     z-index: 1003;
-    opacity: 0.2;
-    animation: fluctuate-opacity 5s ease-in-out infinite;
+    opacity: 0.1;
 }
 
 .social-links {
@@ -102,16 +109,6 @@ body {
 .social-links a:hover {
     text-shadow: 0 0 10px rgb(216, 46, 46);
 }
-
-a {
-    color: var(--secondary-color);
-    text-decoration: none;
-    margin: 0 20px;
-    text-align: center;
-    display: block;
-    font-size: 1em;
-}
-
 
 #video-placeholder {
     width: 100%;
@@ -242,6 +239,15 @@ a {
     100% { opacity: 0.1; }
 }
 
+@keyframes hue-rotate {
+    0% {
+        filter: hue-rotate(0deg) saturate(125%) brightness(75%);
+    }
+    100% {
+        filter: hue-rotate(360deg) saturate(125%) brightness(75%);
+    }
+}
+
 .background-image {
     background-image: url('../other/ascii_art_lain.gif');
     background-position: center;
@@ -254,5 +260,6 @@ a {
     height: 100%;
     opacity: 0.2;
     z-index: -1; 
-    animation: fluctuate-opacity 5s ease-in-out infinite;
+    animation: fluctuate-opacity 5s ease-in-out infinite,
+    hue-rotate 30s linear infinite;
 }
