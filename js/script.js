@@ -1,7 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
     const elements = {
         topLabel: document.getElementById("top-label"),
-        disclaimerLabel: document.getElementById("disclaimer-label"),
         socialLinks: document.getElementById("social-links"),
         widget: document.getElementById("c_widget"),
         videoContainer: document.getElementById("video-container"),
@@ -10,7 +9,6 @@ document.addEventListener("DOMContentLoaded", () => {
     };
 
     let didClick = false;
-    let consoleFinished = false;
     let consoleMessageComplete = false;
 
     function initializeElements() {
@@ -34,8 +32,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 elements.consoleElement.remove();
             });
         }
-        elements.disclaimerLabel.style.opacity = 0;
-
+        
         showMainContent();
         removeBlockingOverlay();
 
