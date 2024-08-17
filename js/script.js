@@ -1,11 +1,13 @@
 document.addEventListener("DOMContentLoaded", () => {
     const elements = {
-        topLabel: document.getElementById("top-label"),
+        audio: document.getElementById("background-audio"),
+        //topLabel: document.getElementById("top-label"),
         socialLinks: document.getElementById("social-links"),
         widget: document.getElementById("c_widget"),
-        videoContainer: document.getElementById("video-container"),
         consoleElement: document.createElement('div'),
-        blockingOverlay: document.createElement('div')
+        blockingOverlay: document.createElement('div'),
+        loadingElement: document.createElement('span'),
+        cursor: document.createElement('span')
     };
 
     let didClick = false;
@@ -66,28 +68,16 @@ document.addEventListener("DOMContentLoaded", () => {
         setInterval(createSentence, 450);
     }
 
-    function loadVideo() {
-        const video = document.getElementById("background-video");
-        video.autoplay = true;
-        video.loop = true;
-        video.playsInline = true;
-        video.style.opacity = 0.2;
-        video.muted = false;
-        video.volume = 0.1;
-
-        const source = document.createElement("source");
-        source.src = "other/video.mp4";
-        source.type = "video/mp4";
-
-        video.appendChild(source);
-        elements.videoContainer.appendChild(video);
-        video.play();
+    function loadAudio() {
+        elements.audio.muted = false;
+        elements.audio.volume = 0.1;
+        elements.audio.play();
     }
 
     function showMainContent() {
         startSentenceRain();
-        loadVideo();
-        elements.topLabel.style.opacity = 1;
+        loadAudio();
+        // elements.topLabel.style.opacity = 1;
         elements.socialLinks.style.opacity = 1;
         elements.widget.classList.remove("hidden");
     }
@@ -109,7 +99,7 @@ document.addEventListener("DOMContentLoaded", () => {
             'enter-wired',
             '<br>Logging into The Wired...',
             '<br>Access granted. Loading... ',
-            '<br>You have successfully entered The Wired.<span style="color: red; opacity: 0.02;"><br>nothing here is real. try to stay yourself.</span>',
+            '<br>You have successfully entered The Wired.<span style="color: red; opacity: 0.01;"><br>nothing here is real. try to stay yourself.</span>',
             '<br><br>Click anywhere to continue.'
         ];
 
@@ -129,17 +119,16 @@ document.addEventListener("DOMContentLoaded", () => {
           
         function typeWithCursor(text, speed, callback) {
             let i = 0;
-            const cursor = document.createElement('span');
-            cursor.classList.add('cursor');
-            consoleElement.appendChild(cursor);
+            elements.cursor.classList.add('cursor');
+            consoleElement.appendChild(elements.cursor);
 
             function typeChar() {
                 if (i < text.length) {
-                    cursor.insertAdjacentText('beforebegin', text.charAt(i));
+                    elements.cursor.insertAdjacentText('beforebegin', text.charAt(i));
                     i++;
                     setTimeout(typeChar, speed);
                 } else {
-                    cursor.remove();
+                    elements.cursor.remove();
                     callback();
                 }
             }
@@ -150,14 +139,13 @@ document.addEventListener("DOMContentLoaded", () => {
         function animateLoading(callback) {
             let progress = 0;
             const totalWidth = 20;
-            const loadingElement = document.createElement('span');
-            consoleElement.appendChild(loadingElement);
+            consoleElement.appendChild(elements.loadingElement);
 
             function updateLoadingBar() {
                 if (progress <= totalWidth) {
                     const filled = '█'.repeat(progress);
                     const empty = '░'.repeat(totalWidth - progress);
-                    loadingElement.textContent = `[${filled}${empty}] ${Math.floor(progress / totalWidth * 100)}%`;
+                    elements.loadingElement.textContent = `[${filled}${empty}] ${Math.floor(progress / totalWidth * 100)}%`;
                     progress++;
                     setTimeout(updateLoadingBar, 100);
                 } else {
