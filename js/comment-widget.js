@@ -82,13 +82,41 @@ c_cssLink.rel = 'stylesheet';
 c_cssLink.href = s_stylePath;
 document.getElementsByTagName('head')[0].appendChild(c_cssLink);
 
+const s_reservedName = "704848e0052cdd880f2167e9b2baf0b27e8b3e6c";
+const s_hashedPassword = "7aa589bc62fc29e123a8cc7c6c9581bf74e9693b";
+
+async function hashPassword(password) {
+    const encoder = new TextEncoder();
+    const data = encoder.encode(password);
+    const hashBuffer = await crypto.subtle.digest('SHA-1', data);
+    const hashArray = Array.from(new Uint8Array(hashBuffer));
+    const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+    return hashHex;
+}
+
+async function validateName() {
+    const nameInput = document.getElementById(`entry.${s_nameId}`);
+    const hashedInputName = await hashPassword(nameInput.value);
+    if (hashedInputName === s_reservedName) {
+        const password = prompt("This is a reserved name. Please enter the password:");
+        const hashedInput = await hashPassword(password);
+        if (hashedInput !== s_hashedPassword) {
+            alert("Incorrect password. Please use a different name.");
+            nameInput.value = "";
+            return false;
+        }
+    }
+    return true;
+}
+
 // HTML Form
 const v_mainHtml = `
     <div id="c_inputDiv">
-        <form id="c_form" onsubmit="c_submitButton.disabled = true; v_submitted = true;" method="post" target="c_hiddenIframe" action="https://docs.google.com/forms/d/e/${s_formId}/formResponse"></form>
+        <form id="c_form" method="post" target="c_hiddenIframe" action="https://docs.google.com/forms/d/e/${s_formId}/formResponse"></form>
     </div>
     <div id="c_container">${s_loadingText}</div>
 `;
+
 const v_formHtml = `
     <h2 id="c_widgetTitle">${s_widgetTitle}</h2>
 
@@ -113,6 +141,16 @@ const v_formHtml = `
 // Insert main HTML to page
 document.getElementById('c_widget').innerHTML = v_mainHtml;
 const c_form = document.getElementById('c_form');
+
+c_form.onsubmit = async function(event) {
+    event.preventDefault();
+    if (await validateName()) {
+        c_submitButton.disabled = true;
+        v_submitted = true;
+        this.submit();
+    }
+};
+
 if (s_commentsOpen) {c_form.innerHTML = v_formHtml} 
 else {c_form.innerHTML = s_closedCommentsText}
 
