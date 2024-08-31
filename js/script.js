@@ -1,7 +1,8 @@
 document.addEventListener("DOMContentLoaded", () => {
     const elements = {
-        audio: document.getElementById("background-audio"),
+        // audio: document.getElementById("background-audio"),
         //topLabel: document.getElementById("top-label"),
+        video: document.getElementById("background-video"),
         socialLinks: document.getElementById("social-links"),
         widget: document.getElementById("c_widget"),
         consoleElement: document.createElement('div'),
@@ -68,15 +69,29 @@ document.addEventListener("DOMContentLoaded", () => {
         setInterval(createSentence, 450);
     }
 
+    /*
     function loadAudio() {
         elements.audio.muted = false;
         elements.audio.volume = 0.1;
         elements.audio.play();
     }
+    */
+    
+    function loadVideo() {
+        if (elements.video) {
+            elements.video.muted = false;
+            elements.video.volume = 0.1;
+            elements.video.style.opacity = 1;
+            elements.video.play().catch(error => {
+                console.error("Error playing video:", error);
+            });
+        }
+    }
 
     function showMainContent() {
         startSentenceRain();
-        loadAudio();
+        loadVideo();
+        // loadAudio();
         // elements.topLabel.style.opacity = 1;
         elements.socialLinks.style.opacity = 1;
         elements.widget.classList.remove("hidden");
@@ -183,9 +198,6 @@ document.addEventListener("DOMContentLoaded", () => {
     initializeElements();
     simulateShell(elements.consoleElement, () => {
         consoleFinished = true;
-        if (clickRegistered) {
-            removeConsole();
-        }
     });
     document.addEventListener("click", handleClick);
 });

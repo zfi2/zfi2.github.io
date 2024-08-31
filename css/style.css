@@ -1,9 +1,6 @@
-@import url("https://fonts.googleapis.com/css?family=Montserrat:100");
+/* @import url("https://fonts.googleapis.com/css?family=Montserrat:100"); */
+@font-face { font-family: azuki_font; src: url('../other/azuki.ttf') } 
 
-@font-face {
-    font-family: 'azuki_font';
-    src: url('../other/azuki.ttf');
-}
 
 :root {
     --primary-color: red;
@@ -72,7 +69,7 @@ a {
     color: var(--secondary-color);
     padding: 10px 0;
     z-index: 1003;
-    opacity: 0.1;
+    opacity: 0.01;
     pointer-events: none;
 }
 
@@ -198,6 +195,14 @@ a {
     opacity: 1;
 }
 
+.background-video {
+    opacity: 0;
+    position: absolute;
+    width: auto;
+    height: auto;
+    pointer-events: none;
+}
+
 @keyframes fluctuate-opacity {
     0% { opacity: 0.1; }
     50% { opacity: 0.2; }
@@ -213,6 +218,7 @@ a {
     }
 }
 
+/*
 .background-image {
     background-image: url('../other/ascii_art_lain.gif');
     background-position: center;
@@ -228,3 +234,4 @@ a {
     animation: fluctuate-opacity 5s ease-in-out infinite,
     hue-rotate 30s linear infinite;
 }
+*/
