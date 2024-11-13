@@ -59,6 +59,20 @@ a {
 }
 */
 
+.middle-banner {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    max-width: 100%;
+    text-align: center;
+    height: auto;
+    pointer-events: none;
+    z-index: 1;
+}
+
 .im-still-searching-for-you {
     font-size: 1em;
     position: fixed;
@@ -89,7 +103,7 @@ a {
 
 .social-links a {
     margin: 10px 0;
-    color: var(--primary-color);
+    color: var(--secondary-color);
     text-decoration: none;
     text-shadow: 0 0 5px rgba(216, 5, 5, 0.7);
     transition: text-shadow 0.3s ease;

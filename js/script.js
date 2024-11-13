@@ -1,9 +1,10 @@
 document.addEventListener("DOMContentLoaded", () => {
     const elements = {
         // audio: document.getElementById("background-audio"),
-        //topLabel: document.getElementById("top-label"),
+        // topLabel: document.getElementById("top-label"),
         video: document.getElementById("background-video"),
         socialLinks: document.getElementById("social-links"),
+        middleBanner: document.getElementById("middle-banner"),
         widget: document.getElementById("c_widget"),
         consoleElement: document.createElement('div'),
         blockingOverlay: document.createElement('div'),
@@ -94,6 +95,7 @@ document.addEventListener("DOMContentLoaded", () => {
         // loadAudio();
         // elements.topLabel.style.opacity = 1;
         elements.socialLinks.style.opacity = 1;
+        elements.middleBanner.style.display = "inline-block";
         elements.widget.classList.remove("hidden");
     }
 
