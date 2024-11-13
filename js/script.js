@@ -1,7 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
     const elements = {
-        // audio: document.getElementById("background-audio"),
-        // topLabel: document.getElementById("top-label"),
         video: document.getElementById("background-video"),
         socialLinks: document.getElementById("social-links"),
         middleBanner: document.getElementById("middle-banner"),
@@ -69,14 +67,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
         setInterval(createSentence, 450);
     }
-
-    /*
-    function loadAudio() {
-        elements.audio.muted = false;
-        elements.audio.volume = 0.1;
-        elements.audio.play();
-    }
-    */
     
     function loadVideo() {
         if (elements.video) {
@@ -92,10 +82,10 @@ document.addEventListener("DOMContentLoaded", () => {
     function showMainContent() {
         startSentenceRain();
         loadVideo();
-        // loadAudio();
-        // elements.topLabel.style.opacity = 1;
+
         elements.socialLinks.style.opacity = 1;
         elements.middleBanner.style.display = "inline-block";
+
         elements.widget.classList.remove("hidden");
     }
 

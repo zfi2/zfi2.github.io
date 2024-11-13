@@ -43,22 +43,6 @@ a {
     padding: 0;
 }
 
-/*
-.top-label {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    text-align: center;
-    color: var(--secondary-color);
-    padding: 10px 0;
-    z-index: 1001;
-    opacity: 0;
-    transition: opacity 0.5s ease;
-    pointer-events: none;
-}
-*/
-
 .middle-banner {
     display: none;
     position: fixed;
@@ -231,21 +215,3 @@ a {
         filter: hue-rotate(360deg) saturate(125%) brightness(75%);
     }
 }
-
-/*
-.background-image {
-    background-image: url('../other/ascii_art_lain.gif');
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    opacity: 0.2;
-    z-index: -1; 
-    animation: fluctuate-opacity 5s ease-in-out infinite,
-    hue-rotate 30s linear infinite;
-}
-*/
