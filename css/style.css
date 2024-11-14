@@ -98,7 +98,7 @@ a {
 }
 
 .sentence-rain {
-    z-index: 996;
+    z-index: 2;
     font-family: 'azuki_font';
     position: absolute;
     top: -50px;
