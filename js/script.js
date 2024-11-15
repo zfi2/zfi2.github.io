@@ -49,7 +49,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function startSentenceRain() {
         const sentence = "心配しないで";
-        const initialOpacity = 0.15; // Define the initial opacity here
+        const initialOpacity = 0.15;
     
         const createSentence = () => {
             const sentenceElement = $("<div class='sentence'></div>").text(sentence);
