@@ -46,47 +46,6 @@ document.addEventListener("DOMContentLoaded", () => {
             elements.blockingOverlay.remove();
         }
     }
-
-    function startSentenceRain() {
-        const sentence = "心配しないで";
-        const initialOpacity = 0.15;
-    
-        const createSentence = () => {
-            const sentenceElement = $("<div class='sentence'></div>").text(sentence);
-            const startPositionX = Math.random() * $(window).width();
-            const startPositionY = -50 - Math.random() * 200;
-    
-            sentenceElement.css({ 
-                top: `${startPositionY}px`, 
-                left: `${startPositionX}px`,
-                opacity: initialOpacity
-            });
-            $("#sentence-rain").append(sentenceElement);
-    
-            const windowHeight = $(window).height();
-            const fadeOutStart = windowHeight * 0.75;
-    
-            sentenceElement.animate({
-                top: `${windowHeight}px`,
-            }, {
-                duration: 5000,
-                easing: "linear",
-                step: function(now, fx) {
-                    if (now > fadeOutStart) {
-                        const fadeDistance = windowHeight - fadeOutStart;
-                        const fadePosition = now - fadeOutStart;
-                        const newOpacity = initialOpacity - (initialOpacity * fadePosition / fadeDistance); // Use initialOpacity here
-                        $(this).css('opacity', newOpacity);
-                    }
-                },
-                complete: function() {
-                    $(this).remove();
-                }
-            });
-        };
-    
-        setInterval(createSentence, 450);
-    }
     
     function loadVideo() {
         if (elements.video) {
@@ -100,7 +59,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     function showMainContent() {
-        startSentenceRain();
         loadVideo();
 
         elements.socialLinks.style.opacity = 1;
