@@ -88,8 +88,8 @@ document.addEventListener("DOMContentLoaded", () => {
             '<br><br>Click anywhere to continue.'
         ];
 
-        const typingSpeed = getRandomNumber(75, 150);
-        const pauseBetweenLines = 200;
+        const typingSpeed = getRandomNumber(65, 100);
+        const pauseBetweenLines = 100;
         const passwordPause = 1500;
 
         consoleElement.innerHTML = `
