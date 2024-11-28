@@ -1,15 +1,14 @@
-
-
 document.addEventListener("DOMContentLoaded", () => {
     const elements = {
         video: document.getElementById("background-video"),
         socialLinks: document.getElementById("social-links"),
         middleBanner: document.getElementById("middle-banner"),
+        widget: document.getElementById("c_widget"),
         songTitle: document.getElementById('song-title'),
         consoleElement: document.createElement('div'),
         blockingOverlay: document.createElement('div'),
         loadingElement: document.createElement('span'),
-        cursor: document.createElement('span'),
+        cursor: document.createElement('span')
     };
 
     let didClick = false;
@@ -66,8 +65,8 @@ document.addEventListener("DOMContentLoaded", () => {
         elements.socialLinks.style.opacity = 1;
         elements.songTitle.style.opacity = 1;
         elements.middleBanner.style.display = "inline-block";
-  
-        loadCommentsSection();
+
+        elements.widget.classList.remove("hidden");
     }
 
     function getRandomNumber(min, max) {
@@ -104,7 +103,7 @@ document.addEventListener("DOMContentLoaded", () => {
         `;
 
         await delay(1000)
-
+          
         function typeWithCursor(text, speed, callback) {
             let i = 0;
             elements.cursor.classList.add('cursor');
@@ -164,7 +163,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 callback();
             }
         }
-
+        
         typeLine();
     }
 

@@ -1,0 +1,168 @@
+@font-face { 
+    font-family: azuki_font; 
+    src: url('../other/azuki.ttf'); 
+} 
+
+/* Main */
+#c_widget {
+    box-sizing: border-box;
+    width: 21%;
+    font-family: azuki_font;
+    font-size: 12px;
+    color: white;
+    position: fixed;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    z-index: 1000;
+    text-align: center;
+    overflow-y: auto;
+    max-height: 100vh;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 255, 255, 0.3) transparent;
+}
+
+/* Scrollbar Styling */
+#c_widget::-webkit-scrollbar {
+    width: 10px;
+}
+
+#c_widget::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+#c_widget::-webkit-scrollbar-thumb {
+    background-color: rgba(255, 255, 255, 0.3);
+    border-radius: 5px;
+    border: 1px solid white;
+}
+
+#c_widget::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+#c_widget button, #c_widget input[type=submit] {
+    padding: 4px 10px;
+    font-size: 10px;
+    margin: 0 auto;
+    display: block;
+    background-color: transparent;
+    color: white;
+    border: 1px solid white;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+#c_widget button:hover, #c_widget input[type=submit]:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Input section */
+#c_inputDiv {
+    margin-bottom: 8px;
+    padding: 5px;
+    border: 1px solid white;
+}
+
+#c_widgetTitle {
+    margin: -5px -5px 5px -5px;
+    padding: 3px;
+    font-size: 14px;
+    text-align: center;
+}
+
+.c-inputWrapper {
+    margin-bottom: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.c-label {
+    margin-bottom: 3px;
+    font-size: 11px;
+}
+
+.c-input, .c-textInput {
+    font-family: azuki_font;
+    background-color: transparent;
+    color: white;
+    border: 1px solid white;
+    outline: none;
+    width: 90%;
+    box-sizing: border-box;
+    padding: 5px;
+    margin-bottom: 5px;
+}
+
+.c-textInput {
+    height: 60px;
+    resize: vertical;
+}
+
+.c-websiteInput {
+    pointer-events: none;
+    background-color: rgba(255, 255, 255, 0.1);
+    cursor: not-allowed;
+    opacity: 0.7;
+    border-style: dashed;
+}
+
+.c-input::placeholder, .c-textInput::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+/* Comment section */
+.c-comment {
+    margin-bottom: 8px;
+    padding: 5px;
+    border: 1px solid white;
+    text-align: center;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+.c-reply {
+    width: 95%;
+    margin: 0 auto 5px auto;
+    padding: 5px;
+    border: 1px solid white;
+}
+
+.c-replyContainer {
+    margin: -5px;
+    margin-top: 5px;
+    padding: 5px;
+}
+
+.c-name {
+    margin-right: 5px;
+    font-size: 12px;
+    display: inline-block;
+}
+
+.c-timestamp {
+    font-size: 10px;
+    display: inline-block;
+}
+
+.c-text {
+    margin: 5px 0;
+    padding: 5px;
+    font-size: 11px;
+}
+
+/* Pagination */
+#c_pagination {
+    text-align: center;
+}
+
+.c-replyButton, .c-expandButton {
+    margin: 5px auto 0 auto;
+    display: inline-block;
+}
+
+.c-paginationButton {
+    margin: 0 2px;
+    display: inline-block;
+}
