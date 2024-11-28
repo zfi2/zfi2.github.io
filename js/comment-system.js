@@ -237,5 +237,5 @@ class CommentSystem {
   window.commentSystem = null;
 
   document.addEventListener('DOMContentLoaded', () => {
-    window.commentSystem = new CommentSystem('c_widget', 'https://api.lain.ovh/');
+    window.commentSystem = new CommentSystem('c_widget', 'https://api.lain.ovh:41295/');
   });
