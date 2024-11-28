@@ -33,7 +33,7 @@ function initializeComments(container) {
 }
 
 function initializeWebSocket() {
-    const socket = new WebSocket('wss://65.21.130.122:41295', [], {
+    const socket = new WebSocket('wss://api.lain.ovh:41295', [], {
         headers: {
             'Origin': 'https://lain.ovh'
         }
