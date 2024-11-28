@@ -33,11 +33,7 @@ function initializeComments(container) {
 }
 
 function initializeWebSocket() {
-    const socket = new WebSocket('wss://api.lain.ovh:41295', [], {
-        headers: {
-            'Origin': 'https://lain.ovh'
-        }
-    });
+    const socket = new WebSocket('wss://api.lain.ovh:41295')
 
     let currentPage = 1;
     let totalComments = 0;
