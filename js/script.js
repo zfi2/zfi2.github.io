@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", () => {
         video: document.getElementById("background-video"),
         socialLinks: document.getElementById("social-links"),
         middleBanner: document.getElementById("middle-banner"),
-        widget: document.getElementById("c_widget"),
+        // widget: document.getElementById("c_widget"),
         songTitle: document.getElementById('song-title'),
         consoleElement: document.createElement('div'),
         blockingOverlay: document.createElement('div'),
@@ -65,8 +65,7 @@ document.addEventListener("DOMContentLoaded", () => {
         elements.socialLinks.style.opacity = 1;
         elements.songTitle.style.opacity = 1;
         elements.middleBanner.style.display = "inline-block";
-
-        elements.widget.classList.remove("hidden");
+        // elements.widget.classList.remove("hidden");
     }
 
     function getRandomNumber(min, max) {

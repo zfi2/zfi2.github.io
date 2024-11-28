@@ -235,7 +235,4 @@ class CommentSystem {
   
   // Initialize globally so we can access methods from onclick handlers
   window.commentSystem = null;
-
-  document.addEventListener('DOMContentLoaded', () => {
-    window.commentSystem = new CommentSystem('c_widget', 'https://api.lain.ovh:41295/');
-  });
+  window.commentSystem = new CommentSystem('c_widget', 'https://api.lain.ovh:41295/');
