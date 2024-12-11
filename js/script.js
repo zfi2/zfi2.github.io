@@ -3,7 +3,6 @@ document.addEventListener("DOMContentLoaded", () => {
         video: document.getElementById("background-video"),
         socialLinks: document.getElementById("social-links"),
         middleBanner: document.getElementById("middle-banner"),
-        widget: document.getElementById("c_widget"),
         songTitle: document.getElementById('song-title'),
         consoleElement: document.createElement('div'),
         blockingOverlay: document.createElement('div'),
@@ -66,7 +65,8 @@ document.addEventListener("DOMContentLoaded", () => {
         elements.songTitle.style.opacity = 1;
         elements.middleBanner.style.display = "inline-block";
 
-        elements.widget.classList.remove("hidden");
+        window.commentSystem.initialize();
+        window.commentSystem.show();
     }
 
     function getRandomNumber(min, max) {
@@ -90,9 +90,9 @@ document.addEventListener("DOMContentLoaded", () => {
             '<br><br>Click anywhere to continue.'
         ];
 
-        const typingSpeed = getRandomNumber(65, 100);
-        const pauseBetweenLines = 100;
-        const passwordPause = 1500;
+        const typingSpeed = getRandomNumber(1, 2);
+        const pauseBetweenLines = 1;
+        const passwordPause = 1;
 
         consoleElement.innerHTML = `
             COMMUNICATION CONSOLE v1.0.5</br>
